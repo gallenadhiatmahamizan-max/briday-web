@@ -1,0 +1,610 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background: #020617;
+}
+
+
+/* =========================
+   BACKGROUND BIRU + HITAM
+========================= */
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -5;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            #2563eb,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            #1e40af,
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #020617,
+            #061a45,
+            #000000
+        );
+}
+
+
+/* =========================
+   BINTANG
+========================= */
+
+.stars {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+
+    opacity: 0.4;
+
+    background-image:
+        radial-gradient(
+            white 1px,
+            transparent 1px
+        );
+
+    background-size: 45px 45px;
+
+    animation: starsMove 20s linear infinite;
+}
+
+@keyframes starsMove {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(45px);
+    }
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+    width: 90%;
+    max-width: 500px;
+
+    padding: 40px 25px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,0.08);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 70px rgba(0,0,0,0.5),
+        0 0 40px rgba(37,99,235,0.25);
+
+    animation: cardAppear 1s ease;
+
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform:
+            translateY(40px)
+            scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================
+   TEXT
+========================= */
+
+.small-text {
+    font-size: 11px;
+    letter-spacing: 4px;
+
+    color: #93c5fd;
+
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+
+    background:
+        linear-gradient(
+           90deg,
+            white,
+            #60a5fa,
+            white
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation: textGlow 3s linear infinite;
+}
+
+@keyframes textGlow {
+    to {
+        background-position: 200% center;
+    }
+}
+
+.line {
+    width: 80px;
+    height: 3px;
+
+    margin: 0 auto 30px;
+
+    background: #60a5fa;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 0 15px #3b82f6;
+}
+
+/* =========================
+   FOTO 1 + FOTO 2
+========================= */
+
+.photos {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 15px;
+
+    margin: 0 auto 20px;
+}
+
+
+/* =========================
+   FOTO 3
+========================= */
+
+.photo-third {
+    display: flex;
+
+    justify-content: center;
+
+    width: 100%;
+
+    margin: 0 auto 35px;
+}
+
+
+
+/* bingkai masing-masing foto */
+
+.photo-wrapper {
+    position: relative;
+
+    background: white;
+
+    padding: 8px;
+
+    box-shadow:
+        0 15px 35px rgba(0,0,0,0.5);
+
+    z-index: 2;
+
+    animation:
+        polaroidFloat 4s ease-in-out infinite;
+}
+
+
+/* =========================
+   FOTO LANDSCAPE
+========================= */
+
+.photo-wrapper.landscape {
+    width: 220px;
+    height: 155px;
+
+    transform: rotate(-3deg);
+}
+
+
+/* =========================
+   FOTO PORTRAIT
+========================= */
+
+.photo-wrapper.portrait {
+    width: 145px;
+    height: 205px;
+
+    transform: rotate(3deg);
+
+    animation-delay: 0.5s;
+}
+
+
+/* gambar */
+
+.photo-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 2px;
+}
+
+
+/* tulisan kecil bawah foto */
+
+.photo-wrapper::after {
+    content: "happy birthday ♡";
+
+    position: absolute;
+
+    bottom: -25px;
+    left: 0;
+
+    width: 100%;
+
+    text-align: center;
+
+    color: #172554;
+
+    font-family: cursive;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   ANIMASI FOTO
+========================= */
+
+@keyframes polaroidFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(-3deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+    }
+}
+
+
+/* foto portrait punya arah miring berbeda */
+
+.photo-wrapper.portrait {
+    animation-name: portraitFloat;
+}
+
+@keyframes portraitFloat {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(3deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(-2deg);
+    }
+}
+
+
+/* =========================
+   DESCRIPTION
+========================= */
+
+h2 {
+    font-size: 20px;
+
+    margin-bottom: 15px;
+}
+
+.description {
+    color: #dbeafe;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+    padding: 15px 25px;
+
+    border: none;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #60a5fa,
+            #2563eb
+        );
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(37,99,235,0.5);
+
+    transition: 0.3s;
+}
+
+button:hover {
+    transform:
+        translateY(-4px)
+        scale(1.05);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================
+   PESAN RAHASIA
+========================= */
+
+.message {
+    display: none;
+
+    margin-top: 30px;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    background:
+        rgba(30,64,175,0.25);
+
+    border:
+        1px solid rgba(147,197,253,0.2);
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+.message.show {
+    display: block;
+
+    animation:
+        messageAppear 0.8s ease;
+}
+
+.message h3 {
+    color: #93c5fd;
+
+    margin-bottom: 15px;
+}
+
+.message p {
+    margin-bottom: 12px;
+}
+
+.message strong {
+    color: #93c5fd;
+}
+
+@keyframes messageAppear {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.8)
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
+
+
+/* =========================
+   DEKORASI MELAYANG
+========================= */
+
+.floating-item {
+    position: fixed;
+
+    font-size: 35px;
+
+    opacity: 0.6;
+
+    z-index: 1;
+
+    animation:
+        floating 4s ease-in-out infinite;
+}
+
+.item1 {
+    top: 12%;
+    left: 8%;
+}
+
+.item2 {
+    top: 25%;
+    right: 8%;
+
+    animation-delay: 1s;
+}
+
+.item3 {
+    bottom: 15%;
+    left: 10%;
+
+    animation-delay: 2s;
+}
+
+.item4 {
+    bottom: 20%;
+    right: 10%;
+
+    animation-delay: 3s;
+}
+
+@keyframes floating {
+
+    0%, 100% {
+        transform:
+            translateY(0)
+            rotate(-5deg);
+    }
+
+    50% {
+        transform:
+            translateY(-25px)
+            rotate(5deg);
+    }
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti-piece {
+    position: fixed;
+
+    top: -20px;
+
+    width: 10px;
+    height: 10px;
+
+    z-index: 10;
+
+    animation:
+        fall linear forwards;
+}
+
+@keyframes fall {
+
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   RESPONSIVE HP
+========================= */
+
+@media (max-width: 500px) {
+
+    .card {
+        padding: 35px 20px;
+    }
+
+    h1 {
+        font-size: 38px;
+    }
+
+    .photos {
+        gap: 8px;
+    }
+
+    .photo-wrapper.landscape {
+        width: 180px;
+        height: 125px;
+    }
+
+    .photo-wrapper.portrait {
+        width: 115px;
+        height: 170px;
+    }
+
+    .photo-wrapper::after {
+        font-size: 10px;
+    }
+
+    .floating-item {
+        font-size: 25px;
+    }
+}
+
+/* =========================
+   WATERMARK
+========================= */
+
+.watermark {
+    position: fixed;
+
+    bottom: 10px;
+    right: 15px;
+
+    font-size: 10px;
+
+    color: rgba(255,255,255,0.45);
+
+    letter-spacing: 1px;
+
+    z-index: 20;
+}
